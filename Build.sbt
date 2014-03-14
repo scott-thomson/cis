@@ -2,7 +2,7 @@ import com.typesafe.sbt.SbtStartScript
 
 seq(SbtStartScript.startScriptForClassesSettings: _*)
 
-name := "Tennis"
+name := "CIS"
 
 version := "1.0"
 
