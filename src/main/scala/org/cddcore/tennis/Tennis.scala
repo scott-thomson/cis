@@ -3,7 +3,8 @@ package org.cddcore.tennis
 import org.junit.runner.RunWith
 import org.cddcore.engine.Engine
 import org.cddcore.engine.tests.CddJunitRunner
- 
+import org.corecdd.website.WebServer
+
 case class Score1(name: String)
 
 object Score1 {
@@ -17,7 +18,7 @@ object Score1 {
   val lost = Score1("lost")
   val noScore = Score1("no score")
 }
- 
+
 @RunWith(classOf[CddJunitRunner])
 object TennisScorer1 {
   import Score1._
@@ -35,7 +36,7 @@ object TennisScorer1 {
     scenario(2, 4).expected("Right won").
     scenario(3, 5).expected("Right won").
     useCase("The running score of each game is described in a manner peculiar to tennis: scores from zero to three points are described as 'love', 'fifteen', 'thirty', and 'forty' respectively.").
-    scenario(0, 0).expected("love - love").because((l: Int, r: Int) => l < 4 && r < 4).code((l: Int, r: Int) => lookup(l).name+ " - "+ lookup(r).name).
+    scenario(0, 0).expected("love - love").because((l: Int, r: Int) => l < 4 && r < 4).code((l: Int, r: Int) => lookup(l).name + " - " + lookup(r).name).
     scenario(2, 3).expected("Thirty - Forty").
     scenario(2, 1).expected("Thirty - Fifteen").
 
@@ -50,4 +51,8 @@ object TennisScorer1 {
     scenario(4, 5).expected("Advantage Right").because((l: Int, r: Int) => l > 3 && r > 3 && r == l + 1).
     scenario(5, 6).expected("Advantage Right").
     build
+
+  def main(args: Array[String]) {
+    WebServer(scorer).launch
+  }
 }
