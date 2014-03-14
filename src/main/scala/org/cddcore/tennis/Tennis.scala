@@ -20,7 +20,7 @@ object Score1 {
 }
 
 @RunWith(classOf[CddJunitRunner])
-object TennisScorer1 {
+object Tennis {
   import Score1._
   val lookup = Map(0 -> love, 1 -> s15, 2 -> s30, 3 -> s40)
   val scorer = Engine[Int, Int, String]().
