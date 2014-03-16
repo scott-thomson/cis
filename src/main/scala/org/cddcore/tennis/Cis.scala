@@ -20,11 +20,11 @@ object Score1 {
 }
 
 @RunWith(classOf[CddJunitRunner])
-object Tennis {
+object Cis {
   import Score1._
   val lookup = Map(0 -> love, 1 -> s15, 2 -> s30, 3 -> s40)
   val scorer = Engine[Int, Int, String]().
-    title("Tennis Kata").
+    title("CIS").
     description("Tennis Kata specified by http://codingdojo.org/cgi-bin/wiki.pl?KataTennis").
     useCase("A game is won by the first player to have won at least four points in total and at least two points more than the opponent.").
     scenario(4, 0).expected("Left won").because((l: Int, r: Int) => (l - r) >= 2 && l >= 4).
@@ -53,6 +53,8 @@ object Tennis {
     build
 
   def main(args: Array[String]) {
-    WebServer(scorer).launch
+    println("About to launch the Mock CIS Site")
+
+    WebServer(8090, scorer).launch
   }
 }
