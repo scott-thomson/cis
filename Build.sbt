@@ -13,3 +13,5 @@ EclipseKeys.withSource := true
 EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
 
 libraryDependencies +=   "org.cddcore" %% "website" % "1.8.5.12"
+
+libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "8.0.0.M0"

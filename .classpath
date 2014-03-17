@@ -37,6 +37,8 @@
   <classpathentry kind="lib" path="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-util\jars\jetty-util-8.0.0.M0.jar" sourcepath="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-util\srcs\jetty-util-8.0.0.M0-sources.jar"></classpathentry>
   <classpathentry kind="lib" path="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-servlet\jars\jetty-servlet-8.0.0.M0.jar" sourcepath="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-servlet\srcs\jetty-servlet-8.0.0.M0-sources.jar"></classpathentry>
   <classpathentry kind="lib" path="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-security\jars\jetty-security-8.0.0.M0.jar" sourcepath="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-security\srcs\jetty-security-8.0.0.M0-sources.jar"></classpathentry>
+  <classpathentry kind="lib" path="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-webapp\jars\jetty-webapp-8.0.0.M0.jar" sourcepath="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-webapp\srcs\jetty-webapp-8.0.0.M0-sources.jar"></classpathentry>
+  <classpathentry kind="lib" path="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-xml\jars\jetty-xml-8.0.0.M0.jar" sourcepath="C:\Users\A547554\.ivy2\cache\org.eclipse.jetty\jetty-xml\srcs\jetty-xml-8.0.0.M0-sources.jar"></classpathentry>
   <classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"></classpathentry>
   <classpathentry path="bin" kind="output"></classpathentry>
 </classpath>
