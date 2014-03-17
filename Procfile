@@ -1,1 +1,1 @@
-web: target/start net.atos.cis.Cis
+web: target/start net.atos.cis.web.endpoint.CisEndpoint

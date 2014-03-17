@@ -72,9 +72,15 @@ object CisEndpoint {
         </form>
       </body>
     </html>
-
+  def defaultPort = {
+    val portString = System.getenv("PORT")
+    println("PortString[" + portString + "]")
+    val port = portString match { case null => 8091; case _ => portString.toInt }
+    println("Port[" + port + "]")
+    port
+  }
   def main(args: Array[String]) {
-    val s = new Server(8091);
+    val s = new Server(defaultPort);
     s.setHandler(cisHandler);
     s.start
     System.out.println("Started server thread")
