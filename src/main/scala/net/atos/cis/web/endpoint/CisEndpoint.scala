@@ -1,5 +1,4 @@
-package nt.atos.cis.web.endpoint
-
+package net.atos.cis.web.endpoint
 import org.eclipse.jetty.server.handler.AbstractHandler
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.Request
@@ -113,4 +112,3 @@ object CisEndpoint {
     System.out.println("Started server thread")
     s.join
   }
-}
