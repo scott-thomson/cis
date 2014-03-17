@@ -1,10 +1,12 @@
 package net.atos.cis.web.endpoint
-import org.eclipse.jetty.server.handler.AbstractHandler
-import org.eclipse.jetty.server.Server
+
+import scala.xml.Elem
 import org.eclipse.jetty.server.Request
+import org.eclipse.jetty.server.Server
+import org.eclipse.jetty.server.handler.AbstractHandler
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import scala.xml.Elem
+import net.atos.cis.Cis
 
 object CisEndpoint {
   private val MethodPost: String = "POST";
@@ -26,62 +28,28 @@ object CisEndpoint {
   def handleGet(request: HttpServletRequest, response: HttpServletResponse) {
     response.setContentType("text/html;charset=utf-8")
     response.setStatus(HttpServletResponse.SC_OK);
-    response.getWriter().println(getCisView());
+    val url = request.getRequestURI()
+    println(url)
+    url match {
+      case "/" => {
+        response.getWriter().println(getCisView())
+        response.setContentType("text/html;charset=utf-8")
+      }
+      case _ => {
+        response.setContentType("application/xml;charset=utf-8")
+        response.getWriter().println(Cis().ni2PersonDetails(url.substring(1)))
+      }
+    }
     response.flushBuffer();
   }
 
   def handlePost(request: HttpServletRequest, response: HttpServletResponse) {
     response.setContentType("application/xml;charset=utf-8")
     response.setStatus(HttpServletResponse.SC_OK);
-    response.getWriter().println(getCustDetails(getCustId(request)))
+    val url = request.getParameter("custId");
+    response.getWriter().println(Cis().ni2PersonDetails(url))
     response.flushBuffer();
   }
-
-  def getCustId(request: HttpServletRequest): String = {
-    request.getParameter("custId");
-  }
-
-  def getCustDetails(custId: String): Elem =
-    <CISQuery xsi:schemaLocation="http://www.autotdd.com/ca CISquery%20v1_0%202010-07-05.xsd" xmlns="http://www.autotdd.com/ca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <NameInfo>
-        <PersonNameTitle>MR</PersonNameTitle>
-        <PersonGivenName>ADAM</PersonGivenName>
-        <PersonFamilyName>APPLE</PersonFamilyName>
-        <PersonNameSuffix>BSC</PersonNameSuffix>
-        <PersonRequestedName>John APPLE</PersonRequestedName>
-        <PersonNameStartDate>1981-08-1</PersonNameStartDate>
-      </NameInfo>
-      <PersonalInfo>
-        <NINO>CL100100A</NINO>
-        <MaritalStatus>
-          <MaritalStatus>m</MaritalStatus>
-          <VerificationLevel>Level 1</VerificationLevel>
-        </MaritalStatus>
-        <Nationality>GB</Nationality>
-        <BirthDate>
-          <PersonBirthDate>1970-08-13</PersonBirthDate>
-          <VerificationLevel>Level 2</VerificationLevel>
-        </BirthDate>
-        <GenderCurrent>2</GenderCurrent>
-        <GenderAtRegistration>2</GenderAtRegistration>
-        <DisabilityData/>
-        <SpecialNeedsData/>
-      </PersonalInfo>
-      <ContactInfo>
-        <PreferredLanguages>en</PreferredLanguages>
-      </ContactInfo>
-      <Relationships>
-        <NINO>DP100100A</NINO>
-        <RelationshipType>09 Child</RelationshipType>
-        <RelationshipStartDate>1970-10-12</RelationshipStartDate>
-      </Relationships>
-      <Addresses>
-        <Line1>12 FREESTYLE MEADOWS</Line1>
-        <Line2>ASHTON UNDER LYNE</Line2>
-        <PostCode>AL5 9IK</PostCode>
-        <AddressStartDate>2003-11-05</AddressStartDate>
-      </Addresses>
-    </CISQuery>
 
   def getCisView(): Elem =
     <html>
@@ -112,3 +80,4 @@ object CisEndpoint {
     System.out.println("Started server thread")
     s.join
   }
+}
