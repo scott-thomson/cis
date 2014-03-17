@@ -36,6 +36,6 @@ object Cis {
 
   def main(args: Array[String]) {
     //    Cis().ni2PersonDetails("CL100100A")
-    WebServer(80, engine).launch
+    WebServer(engine).launch
   }
 }
