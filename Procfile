@@ -1,1 +1,1 @@
-web: target/start org.cddcore.heroku.Tennis
+web: target/start net.atos.cis.Cis
