@@ -1,5 +1,8 @@
 package net.atos.cis
 
+import org.cddcore.engine.Engine
+import org.corecdd.website.WebServer
+
 trait NinoToCis {
   def ni2PersonDetails(nino: String): String
 
@@ -27,9 +30,12 @@ class NinoToCisFileSystem extends NinoToCis {
 
 object Cis {
 
+  val engine = Engine[Int, Int]().title("Hello world")
+    .build
   def apply(): NinoToCis = new NinoToCisFileSystem
 
   def main(args: Array[String]) {
-    Cis().ni2PersonDetails("CL100100A")
+    //    Cis().ni2PersonDetails("CL100100A")
+    WebServer(80, engine).launch
   }
 }
