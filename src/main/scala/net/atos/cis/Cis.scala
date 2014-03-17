@@ -8,13 +8,19 @@ trait NinoToCis {
 class NinoToCisFileSystem extends NinoToCis {
 
   def ni2PersonDetails(nino: String): String = {
+
     val detailsFileName = s"Cis/${nino}.txt"
 
-    val url = getClass.getClassLoader.getResource(detailsFileName)
+    try {
+      val url = getClass.getClassLoader.getResource(detailsFileName)
 
-    val xmlString = scala.io.Source.fromURL(url).mkString
+      val xmlString = scala.io.Source.fromURL(url).mkString
 
-    xmlString
+      xmlString
+
+    } catch {
+      case e: Throwable => "<NoDetailsFound/>"
+    }
   }
 
 }
