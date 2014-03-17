@@ -1,6 +1,11 @@
 package net.atos.cis
 
-object Cis {
+trait NinoToCis {
+  def ni2PersonDetails(nino: String): String
+
+}
+
+class NinoToCisFileSystem extends NinoToCis {
 
   def ni2PersonDetails(nino: String): String = {
     val detailsFileName = s"Cis/${nino}.txt"
@@ -8,11 +13,17 @@ object Cis {
     val url = getClass.getClassLoader.getResource(detailsFileName)
 
     val xmlString = scala.io.Source.fromURL(url).mkString
-    println(xmlString)
+
     xmlString
   }
 
+}
+
+object Cis {
+
+  def apply(): NinoToCis = new NinoToCisFileSystem
+
   def main(args: Array[String]) {
-    ni2PersonDetails("CL100100A")
+    Cis().ni2PersonDetails("CL100100A")
   }
 }
