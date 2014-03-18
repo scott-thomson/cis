@@ -72,6 +72,7 @@ object CisEndpoint {
         </form>
       </body>
     </html>
+
   def defaultPort = {
     val portString = System.getenv("PORT")
     println("PortString[" + portString + "]")
@@ -79,6 +80,7 @@ object CisEndpoint {
     println("Port[" + port + "]")
     port
   }
+
   def main(args: Array[String]) {
     val s = new Server(defaultPort);
     s.setHandler(cisHandler);
