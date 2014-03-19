@@ -5,7 +5,6 @@ import org.corecdd.website.WebServer
 
 trait NinoToCis {
   def ni2PersonDetails(nino: String): String
-
 }
 
 class NinoToCisFileSystem extends NinoToCis {
